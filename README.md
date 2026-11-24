@@ -71,6 +71,9 @@ Si al ejecutar algún testbench generas un archivo `.vcd` con el nombre del mód
 ```bash
 gtkwave <nombre_modulo>.vcd
 ```
+Si al ejecutar un testbench generas un archivo `.vcd` (el nombre exacto depende de lo que indique `$dumpfile` dentro de cada `tb_*.v`, por ejemplo `sincronia_vga.vcd`), ábrelo en **GTKWave** con:
+```bash
+gtkwave sincronia_vga.vcd
 
 *(Nota: si en tu repositorio el módulo superior o algún archivo `.v` / `tb_*.v` tiene otro nombre exacto, ajústalo en los comandos anteriores).*
 
