@@ -27,7 +27,7 @@ cd PROYECTO-PONG-VGA
 ```
 
 ### Compilar y ejecutar testbenches
-Cada bloque cuenta con su banco de pruebas (`tb_*.v`) para verificar su funcionamiento de forma aislada o integrada en el módulo superior (`project`):
+Desde la raíz del repositorio puedes compilar y ejecutar cada banco de pruebas (`tb_*.v`) con **Icarus Verilog**:
 
 ```bash
 # 1. Divisor de reloj (100 MHz -> 25 MHz)
@@ -43,7 +43,7 @@ iverilog -o sim_teclado.out teclado/teclado.v teclado/tb_teclado.v
 vvp sim_teclado.out
 
 # 4. Lógica principal del juego
-iverilog -o sim_juego.out lógica_juego/juego.v lógica_juego/tb_juego.v
+iverilog -o sim_juego.out logica_juego/juego.v logica_juego/tb_juego.v
 vvp sim_juego.out
 
 # 5. Marcador (ecuaciones booleanas por mapas de Karnaugh)
@@ -54,25 +54,26 @@ vvp sim_marcador.out
 iverilog -o sim_pantalla.out marcador/marcador.v pantalla/pantalla.v pantalla/tb_pantalla.v
 vvp sim_pantalla.out
 
-# 7. Sistema completo (proyecto_superior)
+# 7. Sistema completo (top_project)
 iverilog -o sim_project.out \
   divisor_reloj/divisor_reloj.v \
   sincronia_VGA/sincronia_vga.v \
   teclado/teclado.v \
-  lógica_juego/juego.v \
+  logica_juego/juego.v \
   marcador/marcador.v \
   pantalla/pantalla.v \
-  proyecto_superior/project.v \
-  proyecto_superior/tb_project.v
+  top_project/project.v \
+  top_project/tb_project.v
 vvp sim_project.out
 ```
 
-Si al simular generas un archivo `.vcd` con el nombre del módulo (por ejemplo, `<nombre_modulo>.vcd`) y deseas inspeccionar las formas de onda en **GTKWave**:
+Si al ejecutar algún testbench generas un archivo `.vcd` con el nombre del módulo, puedes abrirlo en **GTKWave** con:
 ```bash
 gtkwave <nombre_modulo>.vcd
 ```
 
----
+*(Nota: si en tu repositorio el módulo superior o algún archivo `.v` / `tb_*.v` tiene otro nombre exacto, ajústalo en los comandos anteriores).*
+
 
 ## 3. Reproducir el bitstream en Vivado
 
